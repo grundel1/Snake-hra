@@ -1,0 +1,5 @@
+/home/grundel/semestralka/build/CMakeFiles/edit_cache.dir
+/home/grundel/semestralka/build/CMakeFiles/rebuild_cache.dir
+/home/grundel/semestralka/build/snake/CMakeFiles/snake-game.dir
+/home/grundel/semestralka/build/snake/CMakeFiles/edit_cache.dir
+/home/grundel/semestralka/build/snake/CMakeFiles/rebuild_cache.dir
