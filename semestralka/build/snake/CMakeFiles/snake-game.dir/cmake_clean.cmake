@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/snake-game.dir/hra.c.o"
+  "CMakeFiles/snake-game.dir/hra.c.o.d"
   "CMakeFiles/snake-game.dir/main.c.o"
   "CMakeFiles/snake-game.dir/main.c.o.d"
+  "CMakeFiles/snake-game.dir/ovocie.c.o"
+  "CMakeFiles/snake-game.dir/ovocie.c.o.d"
   "CMakeFiles/snake-game.dir/plocha.c.o"
   "CMakeFiles/snake-game.dir/plocha.c.o.d"
   "CMakeFiles/snake-game.dir/snake.c.o"

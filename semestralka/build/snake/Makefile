@@ -130,6 +130,30 @@ snake-game/fast:
 	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/build
 .PHONY : snake-game/fast
 
+hra.o: hra.c.o
+.PHONY : hra.o
+
+# target to build an object file
+hra.c.o:
+	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/hra.c.o
+.PHONY : hra.c.o
+
+hra.i: hra.c.i
+.PHONY : hra.i
+
+# target to preprocess a source file
+hra.c.i:
+	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/hra.c.i
+.PHONY : hra.c.i
+
+hra.s: hra.c.s
+.PHONY : hra.s
+
+# target to generate assembly for a file
+hra.c.s:
+	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/hra.c.s
+.PHONY : hra.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -153,6 +177,30 @@ main.s: main.c.s
 main.c.s:
 	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/main.c.s
 .PHONY : main.c.s
+
+ovocie.o: ovocie.c.o
+.PHONY : ovocie.o
+
+# target to build an object file
+ovocie.c.o:
+	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/ovocie.c.o
+.PHONY : ovocie.c.o
+
+ovocie.i: ovocie.c.i
+.PHONY : ovocie.i
+
+# target to preprocess a source file
+ovocie.c.i:
+	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/ovocie.c.i
+.PHONY : ovocie.c.i
+
+ovocie.s: ovocie.c.s
+.PHONY : ovocie.s
+
+# target to generate assembly for a file
+ovocie.c.s:
+	cd /home/grundel/semestralka/build && $(MAKE) $(MAKESILENT) -f snake/CMakeFiles/snake-game.dir/build.make snake/CMakeFiles/snake-game.dir/ovocie.c.s
+.PHONY : ovocie.c.s
 
 plocha.o: plocha.c.o
 .PHONY : plocha.o
@@ -211,9 +259,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... snake-game"
+	@echo "... hra.o"
+	@echo "... hra.i"
+	@echo "... hra.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... ovocie.o"
+	@echo "... ovocie.i"
+	@echo "... ovocie.s"
 	@echo "... plocha.o"
 	@echo "... plocha.i"
 	@echo "... plocha.s"
