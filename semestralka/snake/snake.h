@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define MAX_DLZKA 256
 
-typedef struct Pozicia {
+typedef struct CastHada {
   int x;
   int y;
-} Pozicia;
+} CastHada;
 
 typedef struct Snake {
   int dlzka;
-  Pozicia cast[MAX_DLZKA];
+  CastHada cast[MAX_DLZKA];
 } Snake;
 
-Snake* vytvor_hada();
+void vytvor_hada(Snake* snake, int x, int y);
 void pohni_hada(Snake* snake, int moveX, int moveY);
-void zrus_hada(Snake* snake);
+void vykresli_hada(Snake* snake, char* plocha, int stlpce);
+bool zjedz_ovocie(Snake* snake, int ovocieX, int ovocieY);

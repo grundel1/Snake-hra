@@ -1,40 +1,52 @@
-#include <stdio.h>
 #include "hra.h"
-#include "plocha.h"
-#include "snake.h"
-#include "ovocie.h"
 #include <ncurses.h>
+#include <string.h>
+#include <time.h>
 
 #define pocet_riadkov 10
 #define pocet_stlpcov 10
 
-int main(int argc, char *argv[])
-{ 
-  Hra* hra = vytvor_hru();
-  Plocha* plocha = vytvor_plochu();
-  Snake* snake = vytvor_hada();
-  Ovocie* ovocie = vytvor_ovocie();
+int main(int argc, char *argv[]) {
+  srand(time(NULL));
+  Hra hra;
+  int x = 0;
+  int y = 0;
 
-  if (hra == NULL) {
-    printf("Nepodarilo sa vytvorit hru\n");
-    return -1;
+  initscr();
+  noecho();
+  timeout(100);
+
+  vytvor_hru(&hra);
+
+  while (!hra.stavHry) {
+    int ch = getch();
+    switch (ch) {
+      case 'w': 
+        x = 0;
+        y = -1;
+        break;
+      case 'a': 
+        x = -1;
+        y = 0;
+        break;
+      case 's': 
+        x = 0;
+        y = 1;
+        break;
+      case 'd': 
+        x = 1;
+        y = 0;
+        break;
+    }
+    updatni_hru(&hra, x, y);
+    clear();
+    vykresli_hru(&hra);
+    printw("Aktualne skore: %d\n", hra.snake.dlzka * 100);
   }
 
-  if (!nacitaj_plochu_subor(plocha, "../../snake/svet.txt")) {
-    fprintf(stderr, "Nepodarilo sa nacitat plochu zo suboru!\n");
-    zrus_plochu(plocha);
-    zrus_hru(hra);
-    return -1;
-  }
-
-  vykresli_plochu(plocha);
-
-  //spustiHru(hra);
-
-  zrus_ovocie(ovocie);
-  zrus_hada(snake);
-  zrus_plochu(plocha);
-  zrus_hru(hra);
+  printw("Konecne skore: %d\n", hra.snake.dlzka * 100);
+  getch();
+  endwin();
 
   return 0;
 }

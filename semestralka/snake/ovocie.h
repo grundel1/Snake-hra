@@ -8,5 +8,5 @@ typedef struct Ovocie {
   bool zjedene;
 } Ovocie;
 
-Ovocie* vytvor_ovocie();
-void zrus_ovocie(Ovocie* ovocie);
+void vytvor_ovocie(Ovocie* ovocie, int riadky, int stlpce);
+void vykresli_ovocie(Ovocie* ovocie, char* plocha, int stlpce, int pocet);

@@ -1,19 +1,15 @@
 #include "ovocie.h"
 
-
-Ovocie* vytvor_ovocie() {
-  Ovocie* ovocie = (Ovocie*)malloc(sizeof(Ovocie));
-  if(!ovocie) {
-    printf("Nevytvorilo sa ovocie");
-    return NULL;
-  }
-  printf("+\n");
+void vytvor_ovocie(Ovocie* ovocie, int riadky, int stlpce) {
+  ovocie->x = 1 + rand() % (stlpce - 2);
+  ovocie->y = 1 + rand() % (riadky - 2);
   ovocie->zjedene = false;
-  return ovocie;
 }
 
-void zrus_ovocie(Ovocie* ovocie) {
-  if(ovocie) {
-    free(ovocie);
+void vykresli_ovocie(Ovocie* ovocie, char* plocha, int stlpce, int pocet) {
+  for (int i = 0; i < pocet; i++) {
+    if (!ovocie[i].zjedene) {
+      plocha[ovocie[i].y * stlpce + ovocie[i].x] = 'o';
+    }
   }
 }

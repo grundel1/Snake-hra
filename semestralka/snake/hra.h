@@ -1,16 +1,17 @@
-#include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "snake.h"
+#include "ovocie.h"
+#include "plocha.h"
+
+#define STLPCE 20
+#define RIADKY 20
 
 typedef struct Hra{
-  int sirkaSveta;
-  int vyskaSveta;
-  char** svet;
-  int skore;
-  int stav;
+  Snake snake;
+  Ovocie ovocie;
+  char plocha[RIADKY * STLPCE];
+  int stavHry;
 }Hra;
 
-Hra* vytvor_hru();
-void spusti_hru(Hra* hra);
-void zrus_hru(Hra* hra);
+void vytvor_hru(Hra* hra);
+void updatni_hru(Hra* hra, int x, int y);
+void vykresli_hru(Hra* hra);
