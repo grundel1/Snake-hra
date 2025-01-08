@@ -3,7 +3,7 @@
 void vytvor_ovocie(Ovocie* ovocie, int riadky, int stlpce) {
   ovocie->x = 1 + rand() % (stlpce - 2);
   ovocie->y = 1 + rand() % (riadky - 2);
-  ovocie->zjedene = false;
+  ovocie->zjedene = 0;
 }
 
 void vykresli_ovocie(Ovocie* ovocie, char* plocha, int stlpce, int pocet) {

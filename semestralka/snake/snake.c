@@ -23,7 +23,9 @@ void vykresli_hada(Snake* snake, char* plocha, int stlpce) {
 
 bool zjedz_ovocie(Snake* snake, int ovocieX, int ovocieY) {
   if (snake->cast[0].x == ovocieX && snake->cast[0].y == ovocieY) {
-    snake->dlzka++;
+    if (snake->dlzka < MAX_DLZKA) {
+      snake->dlzka++;
+    }
     return true;
   }
   return false;

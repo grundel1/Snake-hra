@@ -51,4 +51,9 @@ snake/CMakeFiles/snake-game.dir/hra.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /home/grundel/semestralka/snake/ovocie.h \
- /home/grundel/semestralka/snake/plocha.h
+ /home/grundel/semestralka/snake/plocha.h /usr/include/curses.h \
+ /usr/include/ncurses_dll.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h /usr/include/unctrl.h \
+ /usr/include/curses.h

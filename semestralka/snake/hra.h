@@ -1,13 +1,14 @@
 #include "snake.h"
 #include "ovocie.h"
 #include "plocha.h"
+#include <ncurses.h>
 
 #define STLPCE 20
 #define RIADKY 20
 
 typedef struct Hra{
   Snake snake;
-  Ovocie ovocie;
+  Ovocie ovocie[256];
   char plocha[RIADKY * STLPCE];
   int stavHry;
 }Hra;

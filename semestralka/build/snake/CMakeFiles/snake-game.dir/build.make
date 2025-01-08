@@ -156,6 +156,8 @@ snake/snake-game: snake/CMakeFiles/snake-game.dir/plocha.c.o
 snake/snake-game: snake/CMakeFiles/snake-game.dir/hra.c.o
 snake/snake-game: snake/CMakeFiles/snake-game.dir/ovocie.c.o
 snake/snake-game: snake/CMakeFiles/snake-game.dir/build.make
+snake/snake-game: /usr/lib/x86_64-linux-gnu/libcurses.so
+snake/snake-game: /usr/lib/x86_64-linux-gnu/libform.so
 snake/snake-game: snake/CMakeFiles/snake-game.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/grundel/semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable snake-game"
 	cd /home/grundel/semestralka/build/snake && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/snake-game.dir/link.txt --verbose=$(VERBOSE)

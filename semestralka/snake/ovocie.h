@@ -5,7 +5,7 @@
 typedef struct Ovocie {
   int x;
   int y;
-  bool zjedene;
+  int zjedene;
 } Ovocie;
 
 void vytvor_ovocie(Ovocie* ovocie, int riadky, int stlpce);

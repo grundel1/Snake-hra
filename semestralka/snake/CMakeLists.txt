@@ -1,2 +1,5 @@
 add_executable(snake-game)
 target_sources(snake-game PRIVATE main.c snake.c plocha.c hra.c ovocie.c)
+find_package(Curses REQUIRED)
+target_include_directories(snake-game PRIVATE ${CURSES_INCLUDE_DIR})
+target_link_libraries(snake-game PRIVATE ${CURSES_LIBRARIES})
