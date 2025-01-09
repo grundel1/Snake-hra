@@ -4,16 +4,16 @@
 #include <time.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <sys/wait.h>
+#include <wait.h>
+#include <fcntl.h>
 
 int server_pipe[2];
 int klient_pipe[2];
-int spustena = 1;
 
 void* pouzivatel_vstup(void* arg) {
   int* pipe_write = (int*)arg;
   int x = 0;
-  int y = 0;
+  int y = -1;
 
   while (1) {
     int ch = getch();
@@ -49,6 +49,7 @@ void* vykreslovanie_plochy(void* arg) {
 
   while (1) {
     read(pipe_read[0], &hra, sizeof(Hra));
+    clear();
     vykresli_hru(&hra);
     printw("Aktualne skore: %d\n", hra.snake.dlzka * 100);
     refresh();
@@ -57,21 +58,33 @@ void* vykreslovanie_plochy(void* arg) {
       break;
     }
   }
+  //printf("Konecne skore: %d\n", hra.snake.dlzka * 100);
   return NULL;
 }
 
 void server() {
   Hra hra;
   vytvor_hru(&hra);
-  vykresli_hru(&hra);
+  //vykresli_hru(&hra);
   int x = 0;
-  int y = 0;
+  int y = -1;
+  write(server_pipe[1], &hra, sizeof(Hra));
+
+  int flags = fcntl(klient_pipe[0], F_GETFL, 0);
+  fcntl(klient_pipe[0], F_SETFL, flags | O_NONBLOCK);
 
   while (hra.stavHry == 0) {
-    read(klient_pipe[0], &x, sizeof(int));
-    read(klient_pipe[0], &y, sizeof(int));
+    int result_x = read(klient_pipe[0], &x, sizeof(int));
+    int result_y = read(klient_pipe[0], &y, sizeof(int));
+
+    if (result_x <= 0 || result_y <= 0) {
+      x = x;
+      y = y;
+    }
+
     updatni_hru(&hra, x, y);
     write(server_pipe[1], &hra, sizeof(Hra));
+    usleep(100000);
   }
   write(server_pipe[1], &hra, sizeof(Hra));
 }
@@ -107,8 +120,6 @@ int main(int argc, char *argv[]) {
 
     endwin();
     wait(NULL);
-  printf("Konecne skore: %d\n", 0);
   }
-  printf("Konecne skore: %d\n", 0);
   return 0;
 }

@@ -160,6 +160,7 @@ snake/CMakeFiles/snake-game.dir/main.c.o: /home/grundel/semestralka/snake/main.c
   /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/wait.h \
   /usr/include/x86_64-linux-gnu/sys/wait.h \
   /usr/include/signal.h \
   /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
@@ -182,7 +183,12 @@ snake/CMakeFiles/snake-game.dir/main.c.o: /home/grundel/semestralka/snake/main.c
   /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
-  /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h
+  /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h \
+  /usr/include/fcntl.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+  /usr/include/x86_64-linux-gnu/bits/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_stat.h
 
 snake/CMakeFiles/snake-game.dir/ovocie.c.o: /home/grundel/semestralka/snake/ovocie.c \
   /usr/include/stdc-predef.h \
@@ -361,6 +367,10 @@ snake/CMakeFiles/snake-game.dir/snake.c.o: /home/grundel/semestralka/snake/snake
 
 /home/grundel/semestralka/snake/ovocie.c:
 
+/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
+
+/usr/include/fcntl.h:
+
 /usr/include/x86_64-linux-gnu/bits/signal_ext.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
@@ -372,6 +382,8 @@ snake/CMakeFiles/snake-game.dir/snake.c.o: /home/grundel/semestralka/snake/snake
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigaction.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
 
@@ -390,6 +402,8 @@ snake/CMakeFiles/snake-game.dir/snake.c.o: /home/grundel/semestralka/snake/snake
 /usr/include/x86_64-linux-gnu/sys/wait.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/wait.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
@@ -428,6 +442,8 @@ snake/CMakeFiles/snake-game.dir/snake.c.o: /home/grundel/semestralka/snake/snake
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
 /usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
 
@@ -574,6 +590,8 @@ snake/CMakeFiles/snake-game.dir/snake.c.o: /home/grundel/semestralka/snake/snake
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
