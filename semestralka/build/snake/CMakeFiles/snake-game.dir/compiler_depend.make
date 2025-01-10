@@ -67,7 +67,13 @@ snake/CMakeFiles/snake-game.dir/hra.c.o: /home/grundel/semestralka/snake/hra.c \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/unctrl.h \
-  /usr/include/curses.h
+  /usr/include/curses.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h
 
 snake/CMakeFiles/snake-game.dir/main.c.o: /home/grundel/semestralka/snake/main.c \
   /usr/include/stdc-predef.h \
@@ -136,14 +142,14 @@ snake/CMakeFiles/snake-game.dir/main.c.o: /home/grundel/semestralka/snake/main.c
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/unctrl.h \
   /usr/include/curses.h \
-  /usr/include/string.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h \
   /usr/include/time.h \
   /usr/include/x86_64-linux-gnu/bits/time.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -425,6 +431,10 @@ snake/CMakeFiles/snake-game.dir/snake.c.o: /home/grundel/semestralka/snake/snake
 
 /usr/include/unistd.h:
 
+/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
+
+/usr/include/strings.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
@@ -432,10 +442,6 @@ snake/CMakeFiles/snake-game.dir/snake.c.o: /home/grundel/semestralka/snake/snake
 /usr/include/x86_64-linux-gnu/bits/signum-arch.h:
 
 /usr/include/time.h:
-
-/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
-
-/usr/include/strings.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 

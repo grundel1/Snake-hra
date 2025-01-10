@@ -2,15 +2,19 @@
 #include "ovocie.h"
 #include "plocha.h"
 #include <ncurses.h>
+#include <time.h>
 
-#define STLPCE 20
-#define RIADKY 20
+#define RIADKY 30
+#define STLPCE 30
+#define POCET_OVOCIA 256
 
 typedef struct Hra{
   Snake snake;
-  Ovocie ovocie[256];
+  Ovocie ovocie[POCET_OVOCIA];
   char plocha[RIADKY * STLPCE];
   int stavHry;
+  time_t cas;
+  int limit;
 }Hra;
 
 void vytvor_hru(Hra* hra);

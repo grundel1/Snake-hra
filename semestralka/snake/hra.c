@@ -1,7 +1,7 @@
 #include "hra.h"
 
-int riadky = 20;
-int stlpce = 20;
+int riadky = 30;
+int stlpce = 30;
 int pocet_ovocia = 256;
 
 void vytvor_hru(Hra* hra) {
@@ -12,11 +12,20 @@ void vytvor_hru(Hra* hra) {
   vytvor_ovocie(&hra->ovocie[0], riadky, stlpce);
   vytvor_plochu(hra->plocha, riadky, stlpce);
   hra->stavHry = 0;
+  hra->cas = time(NULL);
+  hra->limit = 5;
 }
 
 
 void updatni_hru(Hra* hra, int x, int y) {
   pohni_hada(&hra->snake, x, y);
+
+  time_t aktualny = time(NULL);
+  if (difftime(aktualny, hra->cas) >= hra->limit) {
+    hra->stavHry = 1;
+    //printf("\nUPLNYUL CAS\nKONECNE SKORE %d", hra->snake.dlzka * 100);
+    return;
+  }
   
   for (int i = 0; i < pocet_ovocia; i++) {
     if (!hra->ovocie[i].zjedene && zjedz_ovocie(&hra->snake, hra->ovocie[i].x, hra->ovocie[i].y)) {
@@ -53,7 +62,6 @@ void vykresli_hru(Hra* hra) {
   vytvor_plochu(hra->plocha, riadky, stlpce);
   vykresli_ovocie(hra->ovocie, hra->plocha, stlpce, 1);
   vykresli_hada(&hra->snake, hra->plocha, stlpce);
-  //vykresli_plochu(hra->plocha, riadky, stlpce);
   
   for (int i = 0; i < riadky; i++) {
     move(i, 0);
@@ -62,24 +70,32 @@ void vykresli_hru(Hra* hra) {
     }
   }
 
-  move(riadky, 0);
-  //printw("Skore: %d", hra->snake.dlzka * 100);
+  time_t aktualny = time(NULL);
+  int zostavajuci = hra->limit - difftime(aktualny, hra->cas);
+  if (hra->stavHry == 0) { 
+    mvprintw(riadky, 0, "Zostavajuci cas: %d sekund\tSkore: %d", zostavajuci, hra->snake.dlzka * 100);
+  } else {
+    move(riadky, 0);
+    clrtoeol();
+    if (zostavajuci == 0) {
+      mvprintw(riadky, 0, "\nUplynul cas!\nKonecne skore: %d", hra->snake.dlzka * 100);
+      //printf("\nUplynul cas!\nKonecne skore: %d", hra->snake.dlzka * 100);
+    } else {
+      mvprintw(riadky, 0, "\nPrehral si!\nKonecne skore: %d", hra->snake.dlzka * 100);
+      //printf("\nPrehral si!\nKonecne skore: %d", hra->snake.dlzka * 100);
+    }
+  }
   refresh();
 }
 
-//2. hra konci ak vyprsi cas pre hru ktory sa definuje na zaciatku hry
+
 /*
  * 2 typy svetov
  *
  * 1. bez prekazok, hadik prejde cez koniec mapy a da sa na opacnu stranu
  *
- * 2. s prekazkami(asi definuj suborom), vsetky ovocia sa musia dat zobrat
- *
- *
- * hrac ktory vytvara svet definuje rozmery sveta(neplati pri subore) a cas pri hre s casom
+ * 2. s prekazkami, vsetky ovocia sa musia dat zobrat
  *
  * treba zobrazovat cas a body
- *
- * hlavne menu - nova hra, pripojit k hre, pokracovat, koniec
  */
 

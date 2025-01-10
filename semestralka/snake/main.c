@@ -9,14 +9,16 @@
 
 int server_pipe[2];
 int klient_pipe[2];
+pthread_mutex_t mutex;
 
 void* pouzivatel_vstup(void* arg) {
   int* pipe_write = (int*)arg;
   int x = 0;
-  int y = -1;
+  int y = 0;
 
   while (1) {
     int ch = getch();
+    pthread_mutex_lock(&mutex);
       switch (ch) {
         case 'w': 
           x = 0;
@@ -35,11 +37,14 @@ void* pouzivatel_vstup(void* arg) {
           y = 0;
           break;
         default:
+          pthread_mutex_unlock(&mutex);
           continue;
     }
     write(pipe_write[1], &x, sizeof(int));
     write(pipe_write[1], &y, sizeof(int));
+    pthread_mutex_unlock(&mutex);
   }
+  pthread_exit(NULL);
   return NULL;
 }
 
@@ -49,25 +54,22 @@ void* vykreslovanie_plochy(void* arg) {
 
   while (1) {
     read(pipe_read[0], &hra, sizeof(Hra));
-    clear();
     vykresli_hru(&hra);
-    printw("Aktualne skore: %d\n", hra.snake.dlzka * 100);
+    //printw("Aktualne skore: %d\n", hra.snake.dlzka * 100);
     refresh();
 
     if (hra.stavHry != 0) {
       break;
     }
   }
-  //printf("Konecne skore: %d\n", hra.snake.dlzka * 100);
   return NULL;
 }
 
 void server() {
   Hra hra;
   vytvor_hru(&hra);
-  //vykresli_hru(&hra);
   int x = 0;
-  int y = -1;
+  int y = 0;
   write(server_pipe[1], &hra, sizeof(Hra));
 
   int flags = fcntl(klient_pipe[0], F_GETFL, 0);
@@ -89,9 +91,23 @@ void server() {
   write(server_pipe[1], &hra, sizeof(Hra));
 }
 
+int menu() {
+  int vyber = 0;
+  printf("\nVitaj v hre Snake\n\n");
+  printf("MENU\n1. Nova hra\n2. Koniec\n");
+  scanf("%d", &vyber);
+  return vyber;
+}
+
 
 int main(int argc, char *argv[]) {
   srand(time(NULL));
+  pthread_mutex_init(&mutex, NULL);
+
+  if (menu() == 2) {
+    pthread_mutex_destroy(&mutex);
+    return 0;
+  }
 
   pipe(server_pipe);
   pipe(klient_pipe);
@@ -115,11 +131,22 @@ int main(int argc, char *argv[]) {
     pthread_create(&vstup, NULL, pouzivatel_vstup, (void*)klient_pipe);
     pthread_create(&vykreslovanie, NULL, vykreslovanie_plochy, (void*)server_pipe);
 
+    Hra hra;
+    while (1) {
+      read(server_pipe[0], &hra, sizeof(Hra));
+      if (hra.stavHry != 0) {
+        break;
+      }
+    }
+
+    //pthread_cancel(vstup);
+    //pthread_cancel(vykreslovanie);
     pthread_join(vstup, NULL);
     pthread_join(vykreslovanie, NULL);
 
     endwin();
     wait(NULL);
   }
+  pthread_mutex_destroy(&mutex);
   return 0;
 }
