@@ -13,17 +13,16 @@ void vytvor_hru(Hra* hra) {
   vytvor_plochu(hra->plocha, riadky, stlpce);
   hra->stavHry = 0;
   hra->cas = time(NULL);
-  hra->limit = 5;
+  hra->limit = 20;
 }
 
 
 void updatni_hru(Hra* hra, int x, int y) {
-  pohni_hada(&hra->snake, x, y);
+  pohni_hada(&hra->snake, x, y, riadky, stlpce, hra->mod);
 
   time_t aktualny = time(NULL);
   if (difftime(aktualny, hra->cas) >= hra->limit) {
     hra->stavHry = 1;
-    //printf("\nUPLNYUL CAS\nKONECNE SKORE %d", hra->snake.dlzka * 100);
     return;
   }
   
@@ -46,8 +45,10 @@ void updatni_hru(Hra* hra, int x, int y) {
     } 
   }
 
-  if (hra->snake.cast[0].x == 0 || hra->snake.cast[0].x == stlpce - 1 || hra->snake.cast[0].y == 0 || hra->snake.cast[0].y == riadky - 1) {
-    hra->stavHry = 1;
+  if (hra->mod == 1) {
+    if (hra->snake.cast[0].x < 0 || hra->snake.cast[0].x >= stlpce || hra->snake.cast[0].y < 0 || hra->snake.cast[0].y >= riadky) {
+      hra->stavHry = 1;
+    }
   }
 
   for (int i = 1; i < hra->snake.dlzka; i++) {
@@ -78,24 +79,11 @@ void vykresli_hru(Hra* hra) {
     move(riadky, 0);
     clrtoeol();
     if (zostavajuci == 0) {
-      mvprintw(riadky, 0, "\nUplynul cas!\nKonecne skore: %d", hra->snake.dlzka * 100);
-      //printf("\nUplynul cas!\nKonecne skore: %d", hra->snake.dlzka * 100);
+      mvprintw(riadky, 0, "\nUplynul cas!\nKonecne skore: %d\nPre ukoncenie programu stlac 'q'\n", hra->snake.dlzka * 100);
     } else {
-      mvprintw(riadky, 0, "\nPrehral si!\nKonecne skore: %d", hra->snake.dlzka * 100);
-      //printf("\nPrehral si!\nKonecne skore: %d", hra->snake.dlzka * 100);
+      mvprintw(riadky, 0, "\nPrehral si!\nKonecne skore: %d\nPre ukoncenie programu stlac 'q'\n", hra->snake.dlzka * 100);
     }
   }
   refresh();
 }
-
-
-/*
- * 2 typy svetov
- *
- * 1. bez prekazok, hadik prejde cez koniec mapy a da sa na opacnu stranu
- *
- * 2. s prekazkami, vsetky ovocia sa musia dat zobrat
- *
- * treba zobrazovat cas a body
- */
 

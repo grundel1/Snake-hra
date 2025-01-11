@@ -15,6 +15,7 @@ typedef struct Hra{
   int stavHry;
   time_t cas;
   int limit;
+  int mod;
 }Hra;
 
 void vytvor_hru(Hra* hra);

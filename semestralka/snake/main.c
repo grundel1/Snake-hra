@@ -10,6 +10,7 @@
 int server_pipe[2];
 int klient_pipe[2];
 pthread_mutex_t mutex;
+int modHry;
 
 void* pouzivatel_vstup(void* arg) {
   int* pipe_write = (int*)arg;
@@ -36,6 +37,8 @@ void* pouzivatel_vstup(void* arg) {
           x = 1;
           y = 0;
           break;
+        case 'q':
+          break;
         default:
           pthread_mutex_unlock(&mutex);
           continue;
@@ -55,7 +58,6 @@ void* vykreslovanie_plochy(void* arg) {
   while (1) {
     read(pipe_read[0], &hra, sizeof(Hra));
     vykresli_hru(&hra);
-    //printw("Aktualne skore: %d\n", hra.snake.dlzka * 100);
     refresh();
 
     if (hra.stavHry != 0) {
@@ -68,6 +70,7 @@ void* vykreslovanie_plochy(void* arg) {
 void server() {
   Hra hra;
   vytvor_hru(&hra);
+  hra.mod = modHry;
   int x = 0;
   int y = 0;
   write(server_pipe[1], &hra, sizeof(Hra));
@@ -75,6 +78,7 @@ void server() {
   int flags = fcntl(klient_pipe[0], F_GETFL, 0);
   fcntl(klient_pipe[0], F_SETFL, flags | O_NONBLOCK);
 
+    
   while (hra.stavHry == 0) {
     int result_x = read(klient_pipe[0], &x, sizeof(int));
     int result_y = read(klient_pipe[0], &y, sizeof(int));
@@ -108,7 +112,12 @@ int main(int argc, char *argv[]) {
     pthread_mutex_destroy(&mutex);
     return 0;
   }
+  
+  modHry = 0;
+  printf("\nVyber si mod hry\n1. Klasicky mod\n2. Prechadzanie cez steny\n");
+  scanf("%d", &modHry);
 
+  
   pipe(server_pipe);
   pipe(klient_pipe);
   
@@ -131,16 +140,6 @@ int main(int argc, char *argv[]) {
     pthread_create(&vstup, NULL, pouzivatel_vstup, (void*)klient_pipe);
     pthread_create(&vykreslovanie, NULL, vykreslovanie_plochy, (void*)server_pipe);
 
-    Hra hra;
-    while (1) {
-      read(server_pipe[0], &hra, sizeof(Hra));
-      if (hra.stavHry != 0) {
-        break;
-      }
-    }
-
-    //pthread_cancel(vstup);
-    //pthread_cancel(vykreslovanie);
     pthread_join(vstup, NULL);
     pthread_join(vykreslovanie, NULL);
 

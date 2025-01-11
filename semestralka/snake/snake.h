@@ -15,6 +15,6 @@ typedef struct Snake {
 } Snake;
 
 void vytvor_hada(Snake* snake, int x, int y);
-void pohni_hada(Snake* snake, int moveX, int moveY);
+void pohni_hada(Snake* snake, int moveX, int moveY, int riadky, int stlpce, int mod);
 void vykresli_hada(Snake* snake, char* plocha, int stlpce);
 bool zjedz_ovocie(Snake* snake, int ovocieX, int ovocieY);
