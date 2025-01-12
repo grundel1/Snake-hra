@@ -16,8 +16,11 @@ typedef struct Hra{
   time_t cas;
   int limit;
   int mod;
+  int riadky;
+  int stlpce;
+  int pocet_ovocia;
 }Hra;
 
-void vytvor_hru(Hra* hra);
+void vytvor_hru(Hra* hra, int riadky, int stlpce, int pocetOvocia, int mod);
 void updatni_hru(Hra* hra, int x, int y);
 void vykresli_hru(Hra* hra);
